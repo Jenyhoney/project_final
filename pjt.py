@@ -7,7 +7,8 @@ import docxpy
 from tkinter.scrolledtext import ScrolledText
 from tkinter import constants as const
 from polyglot_tokenizer import Tokenizer
-
+#import urllib2.request
+from gensim.summarization.summarizer import summarize
 characters = " .,!#$%^&*();:\n\t\\\"?!{}[]<>"
 class Root(Tk):
     
@@ -53,6 +54,8 @@ class Root(Tk):
         print(self.terms)
         self.unique_terms = set(self.terms)
         print(self.unique_terms)
+        #self.searchweb()
+        self.summary()
     def entry(self):
         
         self.entry=ttk.Entry(self.labelFrame,text="",width=50)
@@ -64,6 +67,31 @@ class Root(Tk):
         print(self.tkn.tokenize(self.text))"""
         self.tkn=self.text.lower().split()
         return [term.strip(characters) for term in self.tkn]
+
+    def summary(self):
+        print(summarize(self.text))
+        
+        
+
+
+    '''def searchweb(self):
+        try:
+            self.text=self.text.encode('utf-8')
+        except:
+            self.text=self.text
+        self.query=urllib2.quote_plus(self.text)
+        print ("text=",self.text)
+        print("query=",self.query)'''
+
+
+
+
+
+
+
+
+        
+    
 	
 if __name__ == '__main__':
 
